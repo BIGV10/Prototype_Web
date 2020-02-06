@@ -1,9 +1,9 @@
 package com.kotlinspringvue.backend.controller
 
 import org.springframework.web.bind.annotation.*
+import com.kotlinspringvue.backend.jpa.Equipment
 import com.kotlinspringvue.backend.model.Greeting
 import java.util.concurrent.atomic.AtomicLong
-import com.kotlinspringvue.backend.jpa.Equipment
 import com.kotlinspringvue.backend.repository.*
 import com.kotlinspringvue.backend.service.*
 import org.springframework.beans.factory.annotation.Autowired
@@ -12,6 +12,10 @@ import org.springframework.http.HttpStatus
 @RestController
 @RequestMapping("api")
 class EquipmentController(private val equipmentService: EquipmentService){
+
+    @Autowired
+    lateinit var equipmentRepository :EquipmentRepository
+
     @GetMapping("/equipment")
     fun getEquipmentAll() = equipmentService.all()
 
@@ -22,6 +26,9 @@ class EquipmentController(private val equipmentService: EquipmentService){
     @GetMapping("/equipment/{id}")
     @ResponseStatus(HttpStatus.FOUND)
     fun getEquipmentId(@PathVariable id: Long) = equipmentService.get(id)
+
+    @GetMapping("/equipment/")
+    fun getEquipmentBarcode(@RequestParam(name = "barcode") value: String) = equipmentRepository.findByBarcode(value)
 
     @PutMapping("/equipment/{id}")
     @ResponseStatus(HttpStatus.OK)
