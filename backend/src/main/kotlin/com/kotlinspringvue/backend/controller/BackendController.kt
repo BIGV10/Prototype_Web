@@ -15,12 +15,12 @@ class EquipmentController(private val equipmentService: EquipmentService){
     @GetMapping("/equipment")
     fun getEquipmentAll() = equipmentService.all()
 
-    @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/equipment")
+    @ResponseStatus(HttpStatus.CREATED)
     fun postEquipment(@RequestBody equipment: Equipment) = equipmentService.add(equipment)
 
     @GetMapping("/equipment/{id}")
-//    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.FOUND)
     fun getEquipmentId(@PathVariable id: Long) = equipmentService.get(id)
 
     @PutMapping("/equipment/{id}")
@@ -28,7 +28,7 @@ class EquipmentController(private val equipmentService: EquipmentService){
     fun putEquipmentId(@PathVariable id: Long, @RequestBody equipment: Equipment) = equipmentService.edit(id, equipment)
 
     @DeleteMapping("/equipment/{id}")
-//    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.OK)
     fun deleteEquipmentId(@PathVariable id: Long) = equipmentService.remove(id)
 }
 

@@ -7,7 +7,8 @@ import javax.persistence.*
 data class Equipment(
 
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue
+        @Column(name = "id")
         val id: Long? = null,
 
         @Column(name = "barcode")
