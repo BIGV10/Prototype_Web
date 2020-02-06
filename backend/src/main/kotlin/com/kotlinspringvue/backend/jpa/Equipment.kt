@@ -3,7 +3,7 @@ package com.kotlinspringvue.backend.jpa
 import javax.persistence.*
 
 @Entity
-@Table(name = "equipment", schema = "public")
+@Table(name = "equipment")
 data class Equipment(
 
         @Id
