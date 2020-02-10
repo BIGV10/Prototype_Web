@@ -13,9 +13,6 @@ class EquipmentService(private val equipmentRepository: EquipmentRepository) {
 
     fun get(id: Long): Equipment = equipmentRepository.findById(id).orElse(null)
 
-
-
-
     fun add(equipment: Equipment): Equipment = equipmentRepository.save(equipment)
 
     fun edit(id: Long, equipment: Equipment): Equipment = equipmentRepository.save(equipment.copy(id = id))
