@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface RequestRepository : CrudRepository<Request, Long> {
-
+    fun findByStatus(status: Long): List<Request>
 }

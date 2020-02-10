@@ -58,9 +58,14 @@ class RequestController(private val requestService: RequestService) {
     @ResponseStatus(HttpStatus.FOUND)
     fun getEquipmentId(@PathVariable id: Long) = requestService.get(id)
 
+    @GetMapping("/request/")
+    fun getEquipmentBarcode(@RequestParam(name = "status") value: Long) = requestRepository.findByStatus(value)
+
     @PutMapping("/request/{id}")
     @ResponseStatus(HttpStatus.OK)
     fun putEquipmentId(@PathVariable id: Long, @RequestBody request: Request) = requestService.edit(id, request)
+
+
 
     @DeleteMapping("/request/{id}")
     @ResponseStatus(HttpStatus.OK)
