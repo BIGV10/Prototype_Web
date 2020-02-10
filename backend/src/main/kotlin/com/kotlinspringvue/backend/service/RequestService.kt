@@ -5,7 +5,7 @@ import com.kotlinspringvue.backend.repository.EquipmentRepository
 import com.kotlinspringvue.backend.repository.RequestRepository
 import org.springframework.stereotype.Service
 
-@Service // Позволяем IoC контейнеру внедрять класс
+@Service
 class RequestService(private val requestRepository: RequestRepository) {
     fun all(): Iterable<Request> = requestRepository.findAll()
 

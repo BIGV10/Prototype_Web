@@ -12,10 +12,10 @@ import org.springframework.http.HttpStatus
 
 @RestController
 @RequestMapping("api")
-class EquipmentController(private val equipmentService: EquipmentService){
+class EquipmentController(private val equipmentService: EquipmentService) {
 
     @Autowired
-    lateinit var equipmentRepository :EquipmentRepository
+    lateinit var equipmentRepository: EquipmentRepository
 
     @GetMapping("/equipment")
     fun getEquipmentAll() = equipmentService.all()
@@ -42,7 +42,7 @@ class EquipmentController(private val equipmentService: EquipmentService){
 
 @RestController
 @RequestMapping("api")
-class RequestController(private val requestService: RequestService){
+class RequestController(private val requestService: RequestService) {
 
     @Autowired
     lateinit var requestRepository: RequestRepository
