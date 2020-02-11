@@ -15,6 +15,7 @@ class EquipmentController(private val equipmentService: EquipmentService) {
     lateinit var equipmentRepository: EquipmentRepository
 
     @GetMapping("/equipment")
+    @ResponseStatus(HttpStatus.OK)
     fun getEquipmentAll() = equipmentService.all()
 
     @PostMapping("/equipment")
@@ -22,10 +23,11 @@ class EquipmentController(private val equipmentService: EquipmentService) {
     fun postEquipment(@RequestBody equipment: Equipment) = equipmentService.add(equipment)
 
     @GetMapping("/equipment/{id}")
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     fun getEquipmentId(@PathVariable id: Long) = equipmentService.get(id)
 
     @GetMapping("/equipment/")
+    @ResponseStatus(HttpStatus.OK)
     fun getEquipmentBarcode(@RequestParam(name = "barcode") value: String) = equipmentRepository.findByBarcode(value)
 
     @PutMapping("/equipment/{id}")
