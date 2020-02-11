@@ -15,9 +15,9 @@ class RequestService(private val requestRepository: RequestRepository) {
     fun add(request: Request): Request = requestRepository.save(request)
 
     fun edit(id: Long, request: Request): Request = requestRepository.save(request.copy(id = id))
-//
+
 //    fun addEquipment(request: Request, equipment: Equipment): Request {
-//        request.equipment.(equipment)
+//        request.equipment.add(equipment)
 //        requestRepository.save(request)
 //        //requestRepository.save(request.copy(id = request.id))
 //        return request

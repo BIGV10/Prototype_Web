@@ -1,15 +1,13 @@
 package com.kotlinspringvue.backend.jpa
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import org.hibernate.annotations.OnDelete
-import org.hibernate.annotations.OnDeleteAction
+import com.fasterxml.jackson.annotation.*
 import java.util.*
 import javax.persistence.*
 
 
 @Entity
 @Table(name = "equipment")
-public data class Equipment(
+data class Equipment(
         @Id
         @GeneratedValue
         @Column(name = "id")
@@ -24,19 +22,32 @@ public data class Equipment(
         @Column(name = "comment")
         var comment: String? = null,
 
-        @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.MERGE, CascadeType.PERSIST], mappedBy = "equipment")
-        @OnDelete(action = OnDeleteAction.CASCADE)
-        @JsonIgnoreProperties("equipment")
+        @ManyToMany(fetch = FetchType.EAGER, cascade = [CascadeType.MERGE, CascadeType.PERSIST], mappedBy = "equipment")
+        @JsonIgnore
         var request: MutableSet<Request> = HashSet()
-) {
+)
+//    Версия 3
+//    @ManyToMany(mappedBy = "equipment")
+//    JsonIgnoreProperties("equipment")
+//    var request: Set<Request> = HashSet()
+
+//    Версия 2
+//    @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.MERGE, CascadeType.PERSIST], mappedBy = "equipment")
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @JsonIgnoreProperties("request")
+//    var request: MutableSet<Request> = HashSet()
+
+//    Версия 1
 //    @ManyToMany(cascade = [CascadeType.PERSIST, CascadeType.MERGE])
 //    @JsonIgnoreProperties("equipment")
 //    val request: MutableSet<Request> = HashSet()
-    open fun getRequests(): Set<Request> {
-        return request
-    }
-
-    fun setRequests(requests: MutableSet<Request>) {
-        request = requests
-    }
-}
+//
+//{
+//        fun getRequests(): Set<Request> {
+//                return request
+//        }
+//
+//        fun setRequests(requests: MutableSet<Request>) {
+//                request = requests
+//        }
+//}

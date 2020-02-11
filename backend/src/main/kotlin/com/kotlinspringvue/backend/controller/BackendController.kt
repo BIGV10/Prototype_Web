@@ -8,7 +8,6 @@ import com.kotlinspringvue.backend.repository.RequestRepository
 import com.kotlinspringvue.backend.service.EquipmentService
 import com.kotlinspringvue.backend.service.RequestService
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.rest.webmvc.ResourceNotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import java.util.concurrent.atomic.AtomicLong
@@ -80,9 +79,9 @@ class RequestController(private val requestService: RequestService) {
 //    }
 
 //    @PostMapping("/request/{requestId}/equipment/{equipmentId}")
-////    @ResponseStatus(HttpStatus.CREATED)
-////    fun postEquipmentToRequest(@PathVariable requestId: Long, @PathVariable equipmentId: Long) =
-////            requestService.addEquipment(requestRepository.findById(requestId).orElse(null), equipmentRepository.findById(equipmentId).orElse(null))
+//    @ResponseStatus(HttpStatus.CREATED)
+//    fun postEquipmentToRequest(@PathVariable requestId: Long, @PathVariable equipmentId: Long) =
+//            requestService.addEquipment(requestRepository.findById(requestId).orElse(null), equipmentRepository.findById(equipmentId).orElse(null))
 
 
 //    @PostMapping("/request/{requestId}/equipment/{equipmentId}")
@@ -98,21 +97,23 @@ class RequestController(private val requestService: RequestService) {
 //
 //    }
 
-@PostMapping("/{id}/students/{studentId}") // Path variable names must match with method's signature variables.
-fun postEquipmentToRequest(@PathVariable requestId: Long, @PathVariable equipmentId: Long): Set<Equipment> { // Finds a persisted student
-    val equipment: Equipment = equipmentRepository!!.findById(equipmentId).orElse(null)
-    // Finds a lecturer and adds the given student to the lecturer's set.
-    return requestRepository!!.findById(requestId).map(Function<Request, Set<Equipment>> { request: Request ->
-        request.equipment.add(equipment)
-        requestRepository.save(request).equipment
-    }).orElse(null)
-}
+    @PostMapping("/request/{requestId}/equipment/{equipmentId}")
+    fun postEquipmentToRequest(@PathVariable requestId: Long, @PathVariable equipmentId: Long): Request {
+        val newEquipment: Equipment = equipmentRepository.findById(equipmentId).orElse(null)
+        val currentRequest: Request = requestRepository.findById(requestId).orElse(null)
+        currentRequest.equipment.add(newEquipment)
+        requestRepository.save(currentRequest)
+        return currentRequest
+//        return requestRepository.findById(requestId).map(Function<Request, MutableSet<Equipment>> { request: Request ->
+//            request.equipment.add(newEquipment)
+//            return@Function requestRepository.save(request).equipment
+//        }).orElse(null)
+    }
 
 
     @GetMapping("/request/{id}")
     @ResponseStatus(HttpStatus.FOUND)
     fun getRequestId(@PathVariable id: Long) = requestService.get(id)
-
 
 
     @GetMapping("/request/")
