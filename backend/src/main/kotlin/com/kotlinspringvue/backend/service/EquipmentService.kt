@@ -1,6 +1,6 @@
 package com.kotlinspringvue.backend.service
 
-import com.example.springbootapimysql.exceptions.ResourceNotFoundException
+import com.kotlinspringvue.backend.exception.ResourceNotFoundException
 import com.kotlinspringvue.backend.jpa.Equipment
 import com.kotlinspringvue.backend.repository.EquipmentRepository
 import org.springframework.stereotype.Service
