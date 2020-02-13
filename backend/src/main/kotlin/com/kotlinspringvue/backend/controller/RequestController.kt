@@ -6,6 +6,10 @@ import com.kotlinspringvue.backend.repository.EquipmentRepository
 import com.kotlinspringvue.backend.repository.RequestRepository
 import com.kotlinspringvue.backend.service.RequestService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Pageable
+import org.springframework.data.domain.Sort
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
@@ -44,6 +48,14 @@ class RequestController(private val requestService: RequestService) {
     @GetMapping("/request/")
     @ResponseStatus(HttpStatus.OK)
     fun getRequestStatus(@RequestParam(name = "status") value: Long) = requestRepository.findByStatus(value)
+
+    @GetMapping("/lastRequests/")
+    @ResponseStatus(HttpStatus.OK)
+    fun getLastRequests(): List<Request> {
+        var pageable: Pageable = PageRequest.of(0, 10, Sort.Direction.DESC, "id")
+        var bottomPage: Page<Request> = requestRepository.findAll(pageable)
+        return bottomPage.content
+    }
 
     @PutMapping("/request/{id}")
     @ResponseStatus(HttpStatus.OK)
