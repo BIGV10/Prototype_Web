@@ -1,5 +1,6 @@
 package com.kotlinspringvue.backend.controller
 
+import com.kotlinspringvue.backend.exception.ResourceNotFoundException
 import com.kotlinspringvue.backend.jpa.Equipment
 import com.kotlinspringvue.backend.repository.EquipmentRepository
 import com.kotlinspringvue.backend.service.EquipmentService
@@ -29,7 +30,13 @@ class EquipmentController(private val equipmentService: EquipmentService) {
 
     @GetMapping("/equipments", params = ["barcode"])
     @ResponseStatus(HttpStatus.OK)
-    fun getEquipmentBarcode(@RequestParam(name = "barcode", required = false) value: String) = equipmentRepository.findByBarcode(value)
+    fun getEquipmentBarcode(@RequestParam(name = "barcode", required = false) value: String): Equipment {
+        try {
+            return equipmentRepository.findByBarcode(value)
+        } catch (ResourceNotFoundException: RuntimeException) {
+            throw  ResourceNotFoundException("Equipment", value)
+        }
+    }
 
     @PutMapping("/equipments/{id}")
     @ResponseStatus(HttpStatus.OK)

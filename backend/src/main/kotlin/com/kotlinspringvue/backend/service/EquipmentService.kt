@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 class EquipmentService(private val equipmentRepository: EquipmentRepository) {
     fun all(): Iterable<Equipment> = equipmentRepository.findAll()
 
-    fun get(id: Long): Equipment = equipmentRepository.findById(id).orElseThrow{ResourceNotFoundException("Equipment", id)}
+    fun get(id: Long): Equipment = equipmentRepository.findById(id).orElseThrow { ResourceNotFoundException("Equipment", id) }
 
     fun add(equipment: Equipment): Equipment = equipmentRepository.save(equipment)
 

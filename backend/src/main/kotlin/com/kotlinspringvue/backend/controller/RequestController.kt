@@ -52,8 +52,8 @@ class RequestController(private val requestService: RequestService) {
     @GetMapping("/requests/last")
     @ResponseStatus(HttpStatus.OK)
     fun getLastRequests(): List<Request> {
-        var pageable: Pageable = PageRequest.of(0, 10, Sort.Direction.DESC, "id")
-        var bottomPage: Page<Request> = requestRepository.findAll(pageable)
+        val pageable: Pageable = PageRequest.of(0, 10, Sort.Direction.DESC, "id")
+        val bottomPage: Page<Request> = requestRepository.findAll(pageable)
         return bottomPage.content
     }
 
