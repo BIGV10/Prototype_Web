@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
+
 @RestController
 @RequestMapping("api")
 class EquipmentController(private val equipmentService: EquipmentService) {
@@ -14,27 +15,27 @@ class EquipmentController(private val equipmentService: EquipmentService) {
     @Autowired
     lateinit var equipmentRepository: EquipmentRepository
 
-    @GetMapping("/equipment")
+    @GetMapping("/equipments")
     @ResponseStatus(HttpStatus.OK)
     fun getEquipmentAll() = equipmentService.all()
 
-    @PostMapping("/equipment")
+    @PostMapping("/equipments")
     @ResponseStatus(HttpStatus.CREATED)
     fun postEquipment(@RequestBody equipment: Equipment) = equipmentService.add(equipment)
 
-    @GetMapping("/equipment/{id}")
+    @GetMapping("/equipments/{id}")
     @ResponseStatus(HttpStatus.OK)
     fun getEquipmentId(@PathVariable id: Long) = equipmentService.get(id)
 
-    @GetMapping("/equipment/")
+    @GetMapping("/equipments", params = ["barcode"])
     @ResponseStatus(HttpStatus.OK)
-    fun getEquipmentBarcode(@RequestParam(name = "barcode") value: String) = equipmentRepository.findByBarcode(value)
+    fun getEquipmentBarcode(@RequestParam(name = "barcode", required = false) value: String) = equipmentRepository.findByBarcode(value)
 
-    @PutMapping("/equipment/{id}")
+    @PutMapping("/equipments/{id}")
     @ResponseStatus(HttpStatus.OK)
     fun putEquipmentId(@PathVariable id: Long, @RequestBody equipment: Equipment) = equipmentService.edit(id, equipment)
 
-    @DeleteMapping("/equipment/{id}")
+    @DeleteMapping("/equipments/{id}")
     @ResponseStatus(HttpStatus.OK)
     fun deleteEquipmentId(@PathVariable id: Long) = equipmentService.remove(id)
 }

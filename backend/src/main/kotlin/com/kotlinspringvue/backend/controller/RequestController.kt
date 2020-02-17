@@ -23,15 +23,15 @@ class RequestController(private val requestService: RequestService) {
     @Autowired
     lateinit var equipmentRepository: EquipmentRepository
 
-    @GetMapping("/request")
+    @GetMapping("/requests")
     @ResponseStatus(HttpStatus.OK)
     fun getRequestAll() = requestService.all()
 
-    @PostMapping("/request")
+    @PostMapping("/requests")
     @ResponseStatus(HttpStatus.CREATED)
     fun postRequest(@RequestBody request: Request) = requestService.add(request)
 
-    @PostMapping("/request/{requestId}/equipment/{equipmentId}")
+    @PostMapping("/requests/{requestId}/equipment/{equipmentId}")
     @ResponseStatus(HttpStatus.CREATED)
     fun postEquipmentToRequest(@PathVariable requestId: Long, @PathVariable equipmentId: Long): Request {
         val newEquipment: Equipment = equipmentRepository.findById(equipmentId).orElse(null)
@@ -41,15 +41,15 @@ class RequestController(private val requestService: RequestService) {
         return currentRequest
     }
 
-    @GetMapping("/request/{id}")
+    @GetMapping("/requests/{id}")
     @ResponseStatus(HttpStatus.OK)
     fun getRequestId(@PathVariable id: Long) = requestService.get(id)
 
-    @GetMapping("/request/")
+    @GetMapping("/requests/")
     @ResponseStatus(HttpStatus.OK)
     fun getRequestStatus(@RequestParam(name = "status") value: Long) = requestRepository.findByStatus(value)
 
-    @GetMapping("/lastRequests/")
+    @GetMapping("/requests/last")
     @ResponseStatus(HttpStatus.OK)
     fun getLastRequests(): List<Request> {
         var pageable: Pageable = PageRequest.of(0, 10, Sort.Direction.DESC, "id")

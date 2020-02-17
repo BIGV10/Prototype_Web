@@ -1,6 +1,6 @@
 package com.kotlinspringvue.backend.jpa
 
-import com.fasterxml.jackson.annotation.*
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import java.util.*
 import javax.persistence.*
 
