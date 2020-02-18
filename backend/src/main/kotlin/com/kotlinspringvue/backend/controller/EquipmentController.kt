@@ -5,8 +5,10 @@ import com.kotlinspringvue.backend.jpa.Equipment
 import com.kotlinspringvue.backend.repository.EquipmentRepository
 import com.kotlinspringvue.backend.service.EquipmentService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
+import javax.persistence.NonUniqueResultException
 
 
 @RestController
@@ -33,8 +35,12 @@ class EquipmentController(private val equipmentService: EquipmentService) {
     fun getEquipmentBarcode(@RequestParam(name = "barcode", required = false) value: String): Equipment {
         try {
             return equipmentRepository.findByBarcode(value)
-        } catch (ResourceNotFoundException: RuntimeException) {
+        }
+        catch (e: EmptyResultDataAccessException) {
             throw  ResourceNotFoundException("Equipment", value)
+        }
+        catch (e: NonUniqueResultException) {
+            throw  NonUniqueResultException(e.message)
         }
     }
 
