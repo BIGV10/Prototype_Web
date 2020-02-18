@@ -11,6 +11,7 @@ class EquipmentService(private val equipmentRepository: EquipmentRepository) {
 
     fun get(id: Long): Equipment = equipmentRepository.findById(id).orElseThrow { ResourceNotFoundException("Equipment", id) }
 
+    //TODO Проверка на добавление оборудования с одинаковым штрихкодом
     fun add(equipment: Equipment): Equipment = equipmentRepository.save(equipment)
 
     fun edit(id: Long, equipment: Equipment): Equipment = equipmentRepository.save(equipment.copy(id = id))
