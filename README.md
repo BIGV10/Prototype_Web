@@ -1,11 +1,16 @@
 # Prototype WEB
 Используется Spring Boot, Vue.js, Axios, Postgres...
 
-[TOC]
+http://bigv.ddns.net:9000/api/equipments
+
+http://bigv.ddns.net:9000/api/requests
+
+http://bigv.ddns.net:9001
 
 ### Для запуска нужны
 #### Docker с Postgres
 Запуск `docker-compose -f docker-postgres.yml up`
+
 Сам docker-postgres.yml:
 ```
 version: '3'
@@ -27,9 +32,10 @@ services:
     ports:
       - 5432:5432
 ```
-#### Docker с Keycloak
+#### <s>Docker с Keycloak
 Запуск `docker-compose -f docker-keycloak.yml up`
-Сам docker-keycloak.yml:
+
+Сам docker-keycloak.yml:</s>
 ```
 version: '3'
 

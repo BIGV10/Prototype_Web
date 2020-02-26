@@ -1,5 +1,6 @@
 module.exports = {
     devServer: {
-        port: 8081
+        port: 9001,
+        disableHostCheck: true //Фикс для работы на сервере
     }
 }
