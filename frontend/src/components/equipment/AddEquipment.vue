@@ -49,7 +49,7 @@
 </template>
 
 <script>
-    import EquipmentDataService from "../services/EquipmentDataService";
+    import EquipmentDataService from "../../services/EquipmentDataService";
 
     export default {
         name: "add-equipment",
@@ -68,7 +68,6 @@
         methods: {
             //TODO Добавить проверку полей на ввод
             saveEquipment() {
-
                 var data = {
                     name: this.equipment.name,
                     barcode: this.equipment.barcode,

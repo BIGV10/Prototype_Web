@@ -52,12 +52,12 @@
 
     <div v-else>
         <br/>
-        <p>Please click on a Equipment...</p>
+        <p>Выберите оборудование</p>
     </div>
 </template>
 
 <script>
-    import EquipmentDataService from "../services/EquipmentDataService";
+    import EquipmentDataService from "../../services/EquipmentDataService";
 
     export default {
         name: "equipment",

@@ -10,17 +10,17 @@ export default new Router({
             path: "/",
             alias: "/equipments",
             name: "equipments",
-            component: () => import("./components/EquipmentsList")
+            component: () => import("./components/equipment/EquipmentsList")
         },
         {
             path: "/equipments/:id",
             name: "equipments-details",
-            component: () => import("./components/Equipment")
+            component: () => import("./components/equipment/Equipment")
         },
         {
             path: "/addEquipment",
             name: "add-equipment",
-            component: () => import("./components/AddEquipment")
+            component: () => import("./components/equipment/AddEquipment")
         }
     ]
 });

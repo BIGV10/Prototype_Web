@@ -1,33 +1,35 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
-      <a href="#" class="navbar-brand">Прототип</a>
-      <div class="navbar-nav mr-auto">
-        <li>
-          <div class="dropdown show ml-2">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownRequest" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Прототип</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
               Заявки
             </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <div class="dropdown-menu">
               <a class="dropdown-item" href="/equipments">Список заявок</a>
+              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/addEquipment">Добавить заявку</a>
             </div>
-          </div>
-        </li>
-        <li>
-          <div class="dropdown show ml-2">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownEquipment" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
               Оборудование
             </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <div class="dropdown-menu">
               <a class="dropdown-item" href="/equipments">Список оборудования</a>
+              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/addEquipment">Добавить оборудование</a>
             </div>
-          </div>
-        </li>
+          </li>
+        </ul>
       </div>
     </nav>
-
     <div class="container mt-3">
       <router-view />
     </div>

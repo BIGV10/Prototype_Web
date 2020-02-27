@@ -1,6 +1,7 @@
 <template>
     <div class="list row">
         <div class="col-md-12">
+            <!--            TODO Починить поиск-->
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Поиск по штрихкоду"
                        v-model="barcode"/>
@@ -15,18 +16,7 @@
         </div>
         <div class="col-md-12">
             <h4>Список оборудования</h4>
-            <!--      <ul class="list-group">-->
-            <!--        <li class="list-group-item"-->
-            <!--          :class="{ active: index == currentIndex }"-->
-            <!--          v-for="(equipment, index) in equipments"-->
-            <!--          :key="index"-->
-            <!--          @click="setActiveEquipment(equipment, index)"-->
-            <!--        >-->
-            <!--          {{ equipment.name }}-->
-            <!--        </li>-->
-            <!--      </ul>-->
-
-            <table class="table table-sm table-hover">
+            <table class="table table-sm table-hover table-responsive-sm">
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
@@ -57,46 +47,19 @@
                 </tr>
                 </tbody>
             </table>
+            <div class="d-flex justify-content-end">
             <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Отключено">
-      <button class="mt-2 btn btn-danger"
-              @click="removeAllEquipments"
-              disabled>
+      <button class="mt-2 btn btn-danger" @click="removeAllEquipments" disabled>
         Удалить всё
       </button>
       </span>
+            </div>
         </div>
-        <!--        <div class="col-md-3">-->
-        <!--            <div v-if="currentEquipment">-->
-        <!--                <h4>Оборудование</h4>-->
-        <!--                <div>-->
-        <!--                    <label><strong>ID:</strong></label> {{ currentEquipment.id }}-->
-        <!--                </div>-->
-        <!--                <div>-->
-        <!--                    <label><strong>Название:</strong></label> {{ currentEquipment.name }}-->
-        <!--                </div>-->
-        <!--                <div>-->
-        <!--                    <label><strong>Штрихкод:</strong></label> {{ currentEquipment.barcode }}-->
-        <!--                </div>-->
-        <!--                <div>-->
-        <!--                    <label><strong>Коммент:</strong></label> {{ currentEquipment.comment }}-->
-        <!--                </div>-->
-
-        <!--                <a class="btn btn-warning"-->
-        <!--                   :href="'/equipments/' + currentEquipment.id"-->
-        <!--                >-->
-        <!--                    Изменить-->
-        <!--                </a>-->
-        <!--            </div>-->
-        <!--            <div v-else>-->
-        <!--                <br/>-->
-        <!--                <p>Выберите оборудование...</p>-->
-        <!--            </div>-->
-        <!--        </div>-->
     </div>
 </template>
 
 <script>
-    import EquipmentDataService from "../services/EquipmentDataService";
+    import EquipmentDataService from "../../services/EquipmentDataService";
 
     export default {
         name: "equipment-list",
