@@ -20,9 +20,9 @@
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Название</th>
                     <th scope="col">Штрихкод</th>
                     <th scope="col">Комментарий</th>
+                    <th scope="col">Статус</th>
                     <th scope="col"></th>
                 </tr>
                 </thead>
@@ -31,11 +31,10 @@
                     :class="{ active: index == currentIndex }"
                     v-for="(equipment, index) in equipments"
                     :key="index"
-                    @click="setActiveEquipment(equipment, index)"
                 >
                     <th class="align-middle">{{ equipment.id }}</th>
-                    <td class="align-middle">{{ equipment.name }}</td>
                     <td class="align-middle">{{ equipment.barcode }}</td>
+                    <td class="align-middle">{{ equipment.name }}</td>
                     <td class="align-middle">{{ equipment.comment }}</td>
                     <td class="d-flex justify-content-end">
                         <a class="btn btn-warning btn-sm"

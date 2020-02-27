@@ -12,9 +12,9 @@
               Заявки
             </a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="/equipments">Список заявок</a>
+              <a class="dropdown-item" href="/requests">Список заявок</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/addEquipment">Добавить заявку</a>
+              <a class="dropdown-item" href="/addRequest">Добавить заявку</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -41,3 +41,7 @@
     name: 'app'
   }
 </script>
+
+<style>
+
+</style>

@@ -21,6 +21,21 @@ export default new Router({
             path: "/addEquipment",
             name: "add-equipment",
             component: () => import("./components/equipment/AddEquipment")
+        },
+        {
+            path: "/requests",
+            name: "requests",
+            component: () => import("./components/request/RequestsList")
+        },
+        {
+            path: "/requests/:id",
+            name: "requests-details",
+            component: () => import("./components/request/Request")
+        },
+        {
+            path: "/addRequest",
+            name: "add-request",
+            component: () => import("./components/request/AddRequest")
         }
     ]
 });

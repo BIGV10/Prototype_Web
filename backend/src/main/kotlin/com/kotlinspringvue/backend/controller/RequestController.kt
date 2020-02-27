@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
+@CrossOrigin(origins = ["http://localhost:9001", "http://bigv.ddns.net:9001"], maxAge = 3600)
 @RestController
 @RequestMapping("api")
 class RequestController(private val requestService: RequestService) {
@@ -57,11 +58,12 @@ class RequestController(private val requestService: RequestService) {
         return bottomPage.content
     }
 
-    @PutMapping("/request/{id}")
+//    TODO При таком запросе из заявки удаляется все оборудование
+    @PutMapping("/requests/{id}")
     @ResponseStatus(HttpStatus.OK)
     fun putRequestId(@PathVariable id: Long, @RequestBody request: Request) = requestService.edit(id, request)
 
-    @DeleteMapping("/request/{id}")
+    @DeleteMapping("/requests/{id}")
     @ResponseStatus(HttpStatus.OK)
     fun deleteRequestId(@PathVariable id: Long) = requestService.remove(id)
 }

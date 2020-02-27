@@ -31,7 +31,7 @@
         </form>
 
         <div class="d-flex justify-content-between bd-highlight">
-            <button class="btn btn-danger mr-2"
+            <button class="btn btn-danger"
                     @click="deleteEquipment"
             >
                 Удалить
@@ -51,13 +51,13 @@
     </div>
 
     <div v-else>
-        <br/>
-        <p>Выберите оборудование</p>
+        <Loader/>
     </div>
 </template>
 
 <script>
     import EquipmentDataService from "../../services/EquipmentDataService";
+    import Loader from "../Loader";
 
     export default {
         name: "equipment",
@@ -104,6 +104,9 @@
         mounted() {
             this.message = '';
             this.getEquipment(this.$route.params.id);
+        },
+        components: {
+            Loader
         }
     };
 </script>
