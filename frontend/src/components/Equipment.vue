@@ -1,133 +1,116 @@
 <template>
-  <div v-if="currentEquipment" class="edit-form">
-    <h4>Equipment</h4>
-    <form>
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name"
-          v-model="currentEquipment.name"
-        />
-      </div>
-      <div class="form-group">
-        <label for="barcode">Barcode</label>
-        <input type="text" class="form-control" id="barcode"
-          v-model="currentEquipment.barcode"
-        />
-      </div>
+    <div v-if="currentEquipment" class="edit-form">
+        <h4>Изменение оборудования</h4>
+        <form>
+            <div class="form-group">
+                <label for="id">ID</label>
+                <input type="text" class="form-control" id="id"
+                       v-model="currentEquipment.id"
+                       disabled
+                />
+            </div>
+            <div class="form-group">
+                <label for="name">Название</label>
+                <input type="text" class="form-control" id="name"
+                       v-model="currentEquipment.name"
+                />
+            </div>
+            <div class="form-group">
+                <label for="barcode">Штрихкод</label>
+                <input type="text" class="form-control" id="barcode"
+                       v-model="currentEquipment.barcode"
+                />
+            </div>
 
-      <div class="form-group">
-        <label for="comment">Comment</label>
-        <input type="text" class="form-control" id="comment"
-               v-model="currentEquipment.comment"
-        />
-      </div>
-    </form>
+            <div class="form-group">
+                <label for="comment">Комментарий</label>
+                <textarea type="text" class="form-control" id="comment" rows="3"
+                          v-model="currentEquipment.comment"
+                />
+            </div>
+        </form>
 
-<!--    <button class="badge badge-primary mr-2"-->
-<!--      v-if="currentEquipment.published"-->
-<!--      @click="updatePublished(false)"-->
-<!--    >-->
-<!--      UnPublish-->
-<!--    </button>-->
-<!--    <button v-else class="badge badge-primary mr-2"-->
-<!--      @click="updatePublished(true)"-->
-<!--    >-->
-<!--      Publish-->
-<!--    </button>-->
+        <div class="d-flex justify-content-between bd-highlight">
+            <button class="btn btn-danger mr-2"
+                    @click="deleteEquipment"
+            >
+                Удалить
+            </button>
 
-    <button class="badge badge-danger mr-2"
-      @click="deleteEquipment"
-    >
-      Delete
-    </button>
+            <button type="submit" class="btn btn-success"
+                    @click="updateEquipment"
+            >
+                Обновить
+            </button>
+        </div>
 
-    <button type="submit" class="badge badge-success"
-      @click="updateEquipment"
-    >
-      Update
-    </button>
-    <p>{{ message }}</p>
-  </div>
+        <p/>
+        <p>
+            {{ message }}
+        </p>
+    </div>
 
-  <div v-else>
-    <br />
-    <p>Please click on a Equipment...</p>
-  </div>
+    <div v-else>
+        <br/>
+        <p>Please click on a Equipment...</p>
+    </div>
 </template>
 
 <script>
-import EquipmentDataService from "../services/EquipmentDataService";
+    import EquipmentDataService from "../services/EquipmentDataService";
 
-export default {
-  name: "equipment",
-  data() {
-    return {
-      currentEquipment: null,
-      message: ''
+    export default {
+        name: "equipment",
+        data() {
+            return {
+                currentEquipment: null,
+                message: ''
+            };
+        },
+        methods: {
+            getEquipment(id) {
+                EquipmentDataService.get(id)
+                    .then(response => {
+                        this.currentEquipment = response.data;
+                        console.log(response.data);
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    });
+            },
+
+            updateEquipment() {
+                EquipmentDataService.update(this.currentEquipment.id, this.currentEquipment)
+                    .then(response => {
+                        console.log(response.data);
+                        this.message = 'Оборудование было обновлено!';
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    });
+            },
+
+            deleteEquipment() {
+                EquipmentDataService.delete(this.currentEquipment.id)
+                    .then(response => {
+                        console.log(response.data);
+                        this.$router.push({name: "equipments"});
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    });
+            }
+        },
+        mounted() {
+            this.message = '';
+            this.getEquipment(this.$route.params.id);
+        }
     };
-  },
-  methods: {
-    getEquipment(id) {
-      EquipmentDataService.get(id)
-        .then(response => {
-          this.currentEquipment = response.data;
-          console.log(response.data);
-        })
-        .catch(e => {
-          console.log(e);
-        });
-    },
-
-    // updatePublished(status) {
-    //   var data = {
-    //     id: this.currentEquipment.id,
-    //     title: this.currentEquipment.title,
-    //     description: this.currentEquipment.description,
-    //     published: status
-    //   };
-    //
-    //   EquipmentDataService.update(this.currentEquipment.id, data)
-    //     .then(response => {
-    //       this.currentEquipment.published = status;
-    //       console.log(response.data);
-    //     })
-    //     .catch(e => {
-    //       console.log(e);
-    //     });
-    // },
-
-    updateEquipment() {
-      EquipmentDataService.update(this.currentEquipment.id, this.currentEquipment)
-        .then(response => {
-          console.log(response.data);
-          this.message = 'The equipment was updated successfully!';
-        })
-        .catch(e => {
-          console.log(e);
-        });
-    },
-
-    deleteEquipment() {
-      EquipmentDataService.delete(this.currentEquipment.id)
-        .then(response => {
-          console.log(response.data);
-          this.$router.push({ name: "equipments" });
-        })
-        .catch(e => {
-          console.log(e);
-        });
-    }
-  },
-  mounted() {
-    this.message = '';
-    this.getEquipment(this.$route.params.id);
-  }
-};
 </script>
 
 <style>
-.edit-form {
-  max-width: 300px;
-  margin: auto;
-}
+    .edit-form {
+        max-width: 300px;
+        margin: auto;
+    }
 </style>
