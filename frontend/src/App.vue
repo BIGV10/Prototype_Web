@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Прототип</a>
+      <a class="navbar-brand" href="/">Прототип</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -28,6 +28,34 @@
             </div>
           </li>
         </ul>
+        <ul class="navbar-nav ml-auto" v-if="!currentUser">
+          <li class="nav-item">
+            <router-link class="nav-link" to="/register">
+              <font-awesome-icon icon="user-plus"/>
+              Sign Up
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/login">
+              <font-awesome-icon icon="sign-in-alt"/>
+              Login
+            </router-link>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto" v-else>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/profile">
+              <font-awesome-icon icon="user"/>
+              {{ currentUser.username }}
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <a @click.prevent="logOut" class="nav-link" href>
+              <font-awesome-icon icon="sign-out-alt"/>
+              LogOut
+            </a>
+          </li>
+        </ul>
       </div>
     </nav>
     <div class="container mt-3">
@@ -38,8 +66,32 @@
 
 <script>
   export default {
-    name: 'app'
-  }
+    computed: {
+      currentUser() {
+        return this.$store.state.auth.user;
+      },
+      showAdminBoard() {
+        if (this.currentUser && this.currentUser.roles) {
+          return this.currentUser.roles.includes('ADMIN');
+        }
+
+        return false;
+      },
+      showModeratorBoard() {
+        if (this.currentUser && this.currentUser.roles) {
+          return this.currentUser.roles.includes('MODERATOR');
+        }
+
+        return false;
+      }
+    },
+    methods: {
+      logOut() {
+        this.$store.dispatch('auth/logout');
+        this.$router.push('/login');
+      }
+    }
+  };
 </script>
 
 <style>

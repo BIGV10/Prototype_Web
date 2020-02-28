@@ -3,7 +3,7 @@ package com.kotlinspringvue.backend.model
 import com.fasterxml.jackson.annotation.JsonProperty
 import java.io.Serializable
 
-class LoginUser : Serializable {
+class SigninUser : Serializable {
 
     @JsonProperty("username")
     var username: String? = null

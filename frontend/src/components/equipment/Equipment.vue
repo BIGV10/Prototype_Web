@@ -1,5 +1,6 @@
 <template>
-    <div v-if="currentEquipment" class="edit-form">
+
+<div v-if="currentEquipment" class="edit-form">
         <h4>Изменение оборудования</h4>
         <form>
             <div class="form-group">
