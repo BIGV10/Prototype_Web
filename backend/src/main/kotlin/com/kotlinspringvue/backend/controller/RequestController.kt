@@ -13,7 +13,7 @@ import org.springframework.data.domain.Sort
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
-@CrossOrigin(origins = ["http://localhost:9001", "http://bigv.ddns.net:9001"], maxAge = 3600)
+@CrossOrigin(origins = ["*"], maxAge = 3600)
 @RestController
 @RequestMapping("api")
 class RequestController(private val requestService: RequestService) {
@@ -58,7 +58,7 @@ class RequestController(private val requestService: RequestService) {
         return bottomPage.content
     }
 
-//    TODO При таком запросе из заявки удаляется все оборудование
+    //    TODO При таком запросе из заявки удаляется все оборудование
     @PutMapping("/requests/{id}")
     @ResponseStatus(HttpStatus.OK)
     fun putRequestId(@PathVariable id: Long, @RequestBody request: Request) = requestService.edit(id, request)

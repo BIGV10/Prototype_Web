@@ -10,9 +10,10 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import javax.persistence.NonUniqueResultException
 
-@CrossOrigin(origins = ["http://localhost:9001", "http://bigv.ddns.net:9001"], maxAge = 3600)
+@CrossOrigin(origins = ["*"], maxAge = 3600)
 @RestController
 @RequestMapping("api")
+//@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
 class EquipmentController(private val equipmentService: EquipmentService) {
 
     @Autowired
@@ -35,11 +36,9 @@ class EquipmentController(private val equipmentService: EquipmentService) {
     fun getEquipmentBarcode(@RequestParam(name = "barcode", required = false) value: String): Equipment {
         try {
             return equipmentRepository.findByBarcode(value)
-        }
-        catch (e: EmptyResultDataAccessException) {
+        } catch (e: EmptyResultDataAccessException) {
             throw  ResourceNotFoundException("Equipment", value)
-        }
-        catch (e: NonUniqueResultException) {
+        } catch (e: NonUniqueResultException) {
             throw  NonUniqueResultException(e.message)
         }
     }
