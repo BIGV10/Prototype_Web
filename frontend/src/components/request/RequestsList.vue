@@ -16,7 +16,7 @@
         <!--        </div>-->
         <div class="col-md-6 mb-3">
             <h4>Список заявок</h4>
-            <table class="table table-sm table-hover table-responsive-sm">
+            <table class="table table-sm table-hover">
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
