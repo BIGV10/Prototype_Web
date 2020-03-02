@@ -67,11 +67,13 @@
                 equipments: [],
                 currentEquipment: null,
                 currentIndex: -1,
-                barcode: ""
+                barcode: "",
+                header: {'Authorization': 'Bearer ' + this.$store.getters.getToken}
             };
         },
         methods: {
             retrieveEquipments() {
+
                 EquipmentDataService.getAll()
                     .then(response => {
                         this.equipments = response.data;

@@ -3,6 +3,7 @@ package com.kotlinspringvue.backend.jpa
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import org.hibernate.annotations.OnDelete
 import org.hibernate.annotations.OnDeleteAction
+import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
 
@@ -19,7 +20,13 @@ data class Request(
         var comment: String? = null,
 
         @Column(name = "status")
-        var status: Long? = null
+        var status: Long? = null,
+
+        @Column(name = "date_issued")
+        var dateIssued: LocalDateTime? = null,
+
+        @Column(name = "issued_by")
+        var issuedBy: Long? = null
 ) {
     @ManyToMany(fetch = FetchType.EAGER, cascade = [CascadeType.MERGE, CascadeType.PERSIST])
     @JoinTable(name = "equipment_request", joinColumns = [JoinColumn(name = "request_id", referencedColumnName = "id")],

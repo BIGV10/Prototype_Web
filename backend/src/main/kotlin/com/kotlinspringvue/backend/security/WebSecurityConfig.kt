@@ -60,7 +60,7 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
 //                .anyRequest().authenticated()
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/**").permitAll()
-                .anyRequest().authenticated()
+//                .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

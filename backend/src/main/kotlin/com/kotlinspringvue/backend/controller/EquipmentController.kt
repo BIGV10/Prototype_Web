@@ -8,28 +8,21 @@ import com.kotlinspringvue.backend.service.EquipmentService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.http.HttpStatus
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 import javax.persistence.NonUniqueResultException
 
 @CrossOrigin(origins = ["*"], maxAge = 3600)
 @RestController
 @RequestMapping("api")
-//@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
+@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_TECHNICIAN', 'ROLE_MODERATOR', 'ROLE_ADMIN')")
 class EquipmentController(private val equipmentService: EquipmentService) {
 
     @Autowired
     lateinit var equipmentRepository: EquipmentRepository
     @Autowired
     lateinit var userRepository: UserRepository
-
-//    @GetMapping("/equipments")
-//    @ResponseStatus(HttpStatus.OK)
-//    fun getEquipmentAll() = equipmentService.all()
-
     @GetMapping("/equipments")
-//    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
-//    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_MODERATOR', 'ROLE_ADMIN')")
-//    @PreAuthorize("hasAnyRole('USER', 'MODERATOR', 'ADMIN')")
     @ResponseStatus(HttpStatus.OK)
     fun getEquipmentAll(): Iterable<Equipment> {
         return equipmentService.all()

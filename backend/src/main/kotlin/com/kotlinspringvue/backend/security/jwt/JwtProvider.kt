@@ -1,10 +1,8 @@
 package com.kotlinspringvue.backend.jwt
 
-import com.kotlinspringvue.backend.repository.UserRepository
 import io.jsonwebtoken.*
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import java.util.*
@@ -15,13 +13,10 @@ class JwtProvider {
 
     private val logger: Logger = LoggerFactory.getLogger(JwtProvider::class.java)
 
-    @Autowired
-    lateinit var userRepository: UserRepository
-
-    @Value("\${bigv.app.jwtSecret}")
+    @Value("\${prototype.app.jwtSecret}")
     lateinit var jwtSecret: String
 
-    @Value("\${bigv.app.jwtExpiration}")
+    @Value("\${prototype.app.jwtExpiration}")
     var jwtExpiration: Int? = 0
 
     fun generateJwtToken(username: String): String {
