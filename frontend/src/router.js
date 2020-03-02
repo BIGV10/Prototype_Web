@@ -33,22 +33,10 @@ export default new Router({
             component: () => import('./components/auth/Profile.vue')
         },
         {
-            path: '/admin',
-            name: 'admin',
+            path: '/403',
+            name: '403',
             // lazy-loaded
-            component: () => import('./components/board/BoardAdmin.vue')
-        },
-        {
-            path: '/mod',
-            name: 'moderator',
-            // lazy-loaded
-            component: () => import('./components/board/BoardModerator.vue')
-        },
-        {
-            path: '/user',
-            name: 'user',
-            // lazy-loaded
-            component: () => import('./components/board/BoardUser.vue')
+            component: () => import('./components/error/403.vue')
         },
         {
             path: "/equipments",

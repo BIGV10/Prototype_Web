@@ -1,6 +1,6 @@
 <template>
     <div class="list row" v-if="currentRequest">
-        <div class="edit-form col-4" >
+        <div class="edit-form col-4">
             <h4>Изменение заявки</h4>
             <form>
                 <div class="form-group">
@@ -25,10 +25,10 @@
             </form>
 
             <div class="d-flex justify-content-between bd-highlight">
-<!--                <button @click="deleteRequest"-->
-<!--                        class="btn btn-danger"-->
-<!--                >Удалить-->
-<!--                </button>-->
+                <!--                <button @click="deleteRequest"-->
+                <!--                        class="btn btn-danger"-->
+                <!--                >Удалить-->
+                <!--                </button>-->
 
                 <button @click="updateRequest" class="btn btn-success"
                         type="submit"
@@ -42,21 +42,21 @@
             </p>
         </div>
         <div class="col-8">
-
-            <h4>Оборудование в заявке</h4>
             <RequestEquipmentList v-bind:request="currentRequest"/>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Добавить оборудование по штрихкоду" v-model="barcode"/>
-                <!--                   v-model="barcode"-->
-                <!--            />-->
+                <input class="form-control" placeholder="Добавить оборудование по штрихкоду" type="text"
+                       v-model="barcode"
+                />
                 <div class="input-group-append">
-<!--                    TODO Сделать кнопку-->
-                    <button class="btn btn-success" type="button">
-                        <!--                        @click="searchBarcode"-->
-                        <!--                >-->
+                    <button @click="searchBarcode" class="btn btn-success"
+                            type="button"
+                    >
                         Добавить
                     </button>
                 </div>
+            </div>
+            <div v-if="failedSearch">
+                Оборудования с номером {{ failedBarcode }} нет
             </div>
         </div>
     </div>
@@ -70,6 +70,7 @@
     import RequestDataService from "../../services/RequestDataService";
     import Loader from "../Loader";
     import RequestEquipmentList from "./RequestEquipmentList";
+    import EquipmentDataService from "../../services/EquipmentDataService";
 
     export default {
         name: "request",
@@ -78,7 +79,8 @@
                 currentRequest: null,
                 currentEquipment: null,
                 message: '',
-                barcode: null
+                barcode: "",
+                failedSearch: false
             };
         },
         mounted() {
@@ -90,6 +92,7 @@
                 RequestDataService.get(id)
                     .then(response => {
                         this.currentRequest = response.data;
+                        this.currentEquipment = response.data.equipment;
                         console.log(response.data);
                     })
                     .catch(e => {
@@ -98,23 +101,36 @@
             },
 
             updateRequest() {
-                this.currentEquipment = this.currentRequest.currentEquipment
+                this.currentEquipment = this.currentRequest.currentEquipment;
                 RequestDataService.update(this.currentRequest.id, this.currentRequest)
                     .then(response => {
                         console.log(response.data);
                         this.message = 'Заявка была обновлена!';
+                        for (let i = 0; i < this.currentRequest.equipment.length; i++) {
+                            RequestDataService.addEquipmentToRequest(this.currentRequest.id, this.currentRequest.equipment[i].id);
+                            console.log(this.currentRequest.equipment[i].id);
+                        }
                     })
                     .catch(e => {
                         console.log(e);
                     });
-                // TODO Не знаю почему не работает добавление оборудования в заявку (может проблема в AXIOS POST)
-                for (let i = 0; i < this.currentRequest.equipment.length; i++)
-                {
-                    setTimeout("alert('Boom!');", 1000);
-                    RequestDataService.addEquipmentToRequest(this.currentRequest.id, this.currentRequest.equipment[i].id)
-                    console.log(this.currentRequest.equipment[i].id);
+            },
 
-                }
+            searchBarcode() {
+                EquipmentDataService.findByBarcode(this.barcode)
+                    .then(response => {
+                        let index = this.currentEquipment.findIndex(x => x.barcode === response.data.barcode);
+                        if (index === -1)
+                            this.currentEquipment.push(response.data);
+                        this.failedSearch = false
+                    })
+                    .catch(e => {
+                        if (e.response.status === 404) {
+                            this.failedSearch = true;
+                            this.failedBarcode = this.barcode
+                        } else
+                            console.log(e);
+                    });
             },
             //
             // deleteRequest() {

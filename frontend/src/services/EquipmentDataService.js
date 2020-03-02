@@ -1,5 +1,8 @@
 import http from "../http-common";
-import authHeader from '../services/auth-header';
+import authHeader from './AuthHeader';
+// import axios from "axios";
+
+// const API_URL = 'http://localhost:9000/api/';
 
 class EquipmentDataService {
   getAll() {
@@ -29,6 +32,10 @@ class EquipmentDataService {
   findByBarcode(barcode) {
     return http.get(`/equipments?barcode=${barcode}`, {headers: authHeader()});
   }
+
+  // getUserBoard() {
+  //   return axios.get(API_URL + 'equipments', {headers: authHeader()});
+  // }
 }
 
 export default new EquipmentDataService();

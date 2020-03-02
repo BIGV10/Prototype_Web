@@ -9,7 +9,7 @@
             <form @submit.prevent="handleRegister" name="form">
                 <div v-if="!successful">
                     <div class="form-group">
-                        <label for="username">Username</label>
+                        <label for="username">Логин</label>
                         <input
                                 class="form-control"
                                 name="username"
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Почта</label>
                         <input
                                 class="form-control"
                                 name="email"
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password">Пароль</label>
                         <input
                                 class="form-control"
                                 name="password"
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="firstName">First Name</label>
+                        <label for="firstName">Имя</label>
                         <input
                                 class="form-control"
                                 name="firstName"
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="lastName">Last Name</label>
+                        <label for="lastName">Фамилия</label>
                         <input
                                 class="form-control"
                                 name="lastName"
@@ -84,7 +84,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary btn-block">Sign Up</button>
+                        <button class="btn btn-primary btn-block">Регистрация</button>
                     </div>
                 </div>
             </form>
@@ -100,7 +100,7 @@
 </template>
 
 <script>
-    import User from '../../models/user';
+    import User from '../../models/User';
 
     export default {
         name: 'Register',

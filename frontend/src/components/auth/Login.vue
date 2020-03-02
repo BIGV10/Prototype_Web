@@ -8,7 +8,7 @@
             />
             <form @submit.prevent="handleLogin" name="form">
                 <div class="form-group">
-                    <label for="username">Username</label>
+                    <label for="username">Логин</label>
                     <input
                             class="form-control"
                             name="username"
@@ -20,11 +20,11 @@
                             class="alert alert-danger"
                             role="alert"
                             v-if="errors.has('username')"
-                    >Username is required!
+                    >Введите логин
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password">Пароль</label>
                     <input
                             class="form-control"
                             name="password"
@@ -36,13 +36,13 @@
                             class="alert alert-danger"
                             role="alert"
                             v-if="errors.has('password')"
-                    >Password is required!
+                    >Введите пароль
                     </div>
                 </div>
                 <div class="form-group">
                     <button :disabled="loading" class="btn btn-primary btn-block">
                         <span class="spinner-border spinner-border-sm" v-show="loading"></span>
-                        <span>Login</span>
+                        <span>Вход</span>
                     </button>
                 </div>
                 <div class="form-group">
@@ -54,7 +54,7 @@
 </template>
 
 <script>
-    import User from '../../models/user';
+    import User from '../../models/User';
 
     export default {
         name: 'Login',

@@ -42,7 +42,8 @@
 
         <div v-else>
             <h4>Оборудование добавлено!</h4>
-          <span>ID нового оборудования: {{this.newId}}</span>
+            <span>ID нового оборудования: {{this.newId}}</span>
+            <p/>
             <button class="btn btn-success mt-2" @click="newEquipment">Добавить ещё</button>
         </div>
     </div>
@@ -76,7 +77,7 @@
                 EquipmentDataService.create(data)
                     .then(response => {
                         this.equipment.id = response.data.id;
-                        this.newId = response.data.id
+                        this.newId = response.data.id;
                         console.log(response.data);
                     })
                     .catch(e => {

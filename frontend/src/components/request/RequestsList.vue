@@ -55,7 +55,6 @@
         </div>
         <div class="col-md-6">
             <div v-if="currentRequest">
-                <h4>Оборудование в заявке</h4>
                 <RequestEquipmentList v-bind:request="currentRequest"/>
             </div>
         </div>

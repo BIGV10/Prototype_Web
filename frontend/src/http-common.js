@@ -12,7 +12,7 @@ const api = axios.create({
 });
 
 api.interceptors.response.use(null, error => {
-    let path = '/error';
+    let path = '#';
     switch (error.response.status) {
         case 401:
             path = '/login';
@@ -20,9 +20,9 @@ api.interceptors.response.use(null, error => {
         case 403:
             path = '/403';
             break;
-        case 404:
-            path = '/404';
-            break;
+        // case 404:
+        //     path = '/404';
+        //     break;
     }
     router.push(path);
     return Promise.reject(error);

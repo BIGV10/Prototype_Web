@@ -1,4 +1,7 @@
 <template>
+    <div>
+        <RequestInfo v-bind:request="request"/>
+        <h4>Оборудование в заявке</h4>
         <table class="table table-sm table-hover table-responsive-sm">
             <thead class="thead-dark">
             <tr>
@@ -29,11 +32,15 @@
             </tr>
             </tbody>
         </table>
+    </div>
 </template>
 
 <script>
+    import RequestInfo from "./RequestInfo";
+
     export default {
         name: "RequestEquipmentList",
+        components: {RequestInfo},
         props: ['request'],
         data() {
             return {

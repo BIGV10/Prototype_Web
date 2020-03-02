@@ -7,6 +7,8 @@ import com.kotlinspringvue.backend.repository.EquipmentRepository
 import com.kotlinspringvue.backend.repository.RequestRepository
 import com.kotlinspringvue.backend.repository.UserRepository
 import com.kotlinspringvue.backend.service.RequestService
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
@@ -36,11 +38,14 @@ class RequestController(private val requestService: RequestService) {
     @Autowired
     lateinit var userRepository: UserRepository
 
+    private val logger: Logger = LoggerFactory.getLogger(RequestController::class.java)
+
     @GetMapping("/requests")
     @ResponseStatus(HttpStatus.OK)
     fun getRequestAll() = requestService.all()
 
     @PostMapping("/requests")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_TECHNICIAN', 'ROLE_MODERATOR', 'ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     fun postRequest(@RequestBody request: Request): Request {
         val authentication: Authentication = SecurityContextHolder.getContext().authentication
@@ -57,12 +62,15 @@ class RequestController(private val requestService: RequestService) {
     }
 
     @PostMapping("/requests/{requestId}/equipment/{equipmentId}")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_TECHNICIAN', 'ROLE_MODERATOR', 'ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     fun postEquipmentToRequest(@PathVariable requestId: Long, @PathVariable equipmentId: Long): Request {
+
         val newEquipment: Equipment = equipmentRepository.findById(equipmentId).orElse(null)
         val currentRequest: Request = requestRepository.findById(requestId).orElse(null)
         currentRequest.equipment.add(newEquipment)
         requestRepository.save(currentRequest)
+        logger.info(currentRequest.id.toString(), newEquipment.id.toString())
         return currentRequest
     }
 

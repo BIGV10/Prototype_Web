@@ -1,5 +1,7 @@
 import http from "../http-common";
-import authHeader from '../services/auth-header';
+import authHeader from './AuthHeader';
+
+// const API_URL = 'http://localhost:9000/api/';
 
 class RequestDataService {
   getAll() {
@@ -19,7 +21,7 @@ class RequestDataService {
   }
 
   addEquipmentToRequest(requestId, equipmentId) {
-    return http.post(`/requests/${requestId}/equipment/${equipmentId}`, {headers: authHeader()});
+    return http.post(`/requests/${requestId}/equipment/${equipmentId}`, null, {headers: authHeader()});
   }
 
   delete(id) {
