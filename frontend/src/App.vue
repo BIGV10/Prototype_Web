@@ -32,13 +32,13 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/register">
               <font-awesome-icon icon="user-plus"/>
-              Sign Up
+              Регистрация
             </router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/login">
               <font-awesome-icon icon="sign-in-alt"/>
-              Login
+              Войти
             </router-link>
           </li>
         </ul>
@@ -52,7 +52,7 @@
           <li class="nav-item">
             <a @click.prevent="logOut" class="nav-link" href>
               <font-awesome-icon icon="sign-out-alt"/>
-              LogOut
+              Выход
             </a>
           </li>
         </ul>

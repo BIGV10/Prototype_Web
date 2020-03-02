@@ -39,7 +39,7 @@
                         <a :href="'/requests/' + request.id"
                            class="btn btn-warning btn-sm"
                         >
-                            <i class="fas fa-edit"></i>
+                            <font-awesome-icon icon="edit"/>
                         </a>
                     </td>
                 </tr>

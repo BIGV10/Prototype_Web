@@ -40,7 +40,7 @@
                         <a class="btn btn-warning btn-sm"
                            :href="'/equipments/' + equipment.id"
                         >
-                            <i class="fas fa-edit"></i>
+                            <font-awesome-icon icon="edit"/>
                         </a>
                     </td>
                 </tr>

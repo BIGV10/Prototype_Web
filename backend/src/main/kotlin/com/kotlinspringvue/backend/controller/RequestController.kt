@@ -49,7 +49,7 @@ class RequestController(private val requestService: RequestService) {
         try {
             val currentDateTime = LocalDateTime.now()
             request.dateIssued = currentDateTime
-            request.issuedBy = currentPrincipal.get().id
+            request.issuedBy = currentPrincipal.get().username
             return requestService.add(request)
         } catch (e: AuthenticationException) {
             throw ResourceNotFoundException(e.message!!)

@@ -26,7 +26,7 @@ data class Request(
         var dateIssued: LocalDateTime? = null,
 
         @Column(name = "issued_by")
-        var issuedBy: Long? = null
+        var issuedBy: String? = null
 ) {
     @ManyToMany(fetch = FetchType.EAGER, cascade = [CascadeType.MERGE, CascadeType.PERSIST])
     @JoinTable(name = "equipment_request", joinColumns = [JoinColumn(name = "request_id", referencedColumnName = "id")],
