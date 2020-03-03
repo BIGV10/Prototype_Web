@@ -17,11 +17,11 @@ import javax.persistence.NonUniqueResultException
 @RequestMapping("api")
 @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_TECHNICIAN', 'ROLE_MODERATOR', 'ROLE_ADMIN')")
 class EquipmentController(private val equipmentService: EquipmentService) {
-
     @Autowired
     lateinit var equipmentRepository: EquipmentRepository
     @Autowired
     lateinit var userRepository: UserRepository
+
     @GetMapping("/equipments")
     @ResponseStatus(HttpStatus.OK)
     fun getEquipmentAll(): Iterable<Equipment> {

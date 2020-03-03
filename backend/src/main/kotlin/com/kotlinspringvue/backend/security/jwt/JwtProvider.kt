@@ -1,5 +1,6 @@
 package com.kotlinspringvue.backend.jwt
 
+import com.kotlinspringvue.backend.jpa.User
 import io.jsonwebtoken.*
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -19,11 +20,12 @@ class JwtProvider {
     @Value("\${prototype.app.jwtExpiration}")
     var jwtExpiration: Int? = 0
 
-    fun generateJwtToken(username: String): String {
+    fun generateJwtToken(user: User): String {
         return Jwts.builder()
-                .setSubject(username)
+                .setSubject(user.username)
                 .setIssuedAt(Date())
                 .setExpiration(Date((Date()).time + jwtExpiration!! * 1000))
+                .claim("roles", user.roles?.map { it.name })
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact()
     }

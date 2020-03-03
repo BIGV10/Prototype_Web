@@ -58,7 +58,8 @@ class AuthController {
             val authentication = authenticationManager.authenticate(
                     UsernamePasswordAuthenticationToken(loginRequest.username, loginRequest.password))
             SecurityContextHolder.getContext().authentication = authentication
-            val jwt: String = jwtProvider.generateJwtToken(user.username!!)
+//            val jwt: String = jwtProvider.generateJwtToken(user.username!!)
+            val jwt: String = jwtProvider.generateJwtToken(user)
             val authorities: List<GrantedAuthority> = user.roles!!.stream().map { role -> SimpleGrantedAuthority(role.name) }.collect(Collectors.toList<GrantedAuthority>())
 
             return ResponseEntity.ok(JwtResponse(jwt, user.username, authorities))
