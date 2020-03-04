@@ -1,9 +1,9 @@
 # Prototype WEB
-Используется Spring Boot, Vue.js, Axios, Postgres...
+Используется Spring Boot, Vue.js, Axios, Postgres, JWT...
 
-http://bigv.ddns.net:9000/api/equipments
+http://bigv.ddns.net:9000/api/equipments - доступен только по токену авторизации
 
-http://bigv.ddns.net:9000/api/requests
+http://bigv.ddns.net:9000/api/requests - доступен только по токену авторизации
 
 http://bigv.ddns.net:9001
 
@@ -85,7 +85,7 @@ java -jar target/backend-0.0.1-SNAPSHOT.jar \
 --spring.datasource.username=docker \
 --spring.datasource.password=docker
 ```
-Для запуска frontend:
+Для запуска frontend вне IDE:
 ```
 cd frontend
 npm run serve
