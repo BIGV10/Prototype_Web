@@ -21,6 +21,8 @@ class JwtProvider {
     var jwtExpiration: Int? = 0
 
     fun generateJwtToken(user: User): String {
+
+
         return Jwts.builder()
                 .setSubject(user.username)
                 .setIssuedAt(Date())

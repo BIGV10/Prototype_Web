@@ -1,5 +1,6 @@
 package com.kotlinspringvue.backend.jpa
 
+import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
@@ -25,7 +26,10 @@ data class User(
         var password: String? = null,
 
         @Column(name = "enabled")
-        var enabled: Boolean = false,
+        var enabled: Boolean = true,
+
+        @Column(name = "last_login")
+        var lastLogin: LocalDateTime? = null,
 
         @ManyToMany(fetch = FetchType.EAGER)
         @JoinTable(

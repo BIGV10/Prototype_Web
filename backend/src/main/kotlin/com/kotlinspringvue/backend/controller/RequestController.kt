@@ -44,6 +44,37 @@ class RequestController(private val requestService: RequestService) {
     @ResponseStatus(HttpStatus.OK)
     fun getRequestAll() = requestService.all()
 
+    //Не работает
+//    @GetMapping("/requests")
+//    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_TECHNICIAN', 'ROLE_MODERATOR', 'ROLE_ADMIN')")
+//    @ResponseStatus(HttpStatus.OK)
+//    fun getRequests(
+//            @RequestParam(name = "status", required = false) status: Long,
+//            @RequestParam(name = "username", required = false) username: String): List<Request> {
+//        val authentication = SecurityContextHolder.getContext().authentication
+//        val currentPrincipal = authentication.principal as User
+//        var roles = currentPrincipal.roles!!.map { it.name }?.any { it == "ROLE_TECHNICIAN" || it == "ROLE_MODERATOR" || it == "ROLE_ADMIN" }
+//        try {
+//            if (username != null && status != null && roles) {
+//                var usernameList = requestRepository.findByIssuedBy(username)
+//                var statusList = requestRepository.findByStatus(status)
+//                return usernameList.intersect(statusList).toList()
+//            } else
+//                if (status != null && roles) {
+//                    return requestRepository.findByStatus(status)
+//                } else
+//                    if (username != null) {
+//                        return requestRepository.findByIssuedBy(username)
+//                    } else
+//                        if (roles)
+//                            return requestService.all().toList()
+//        }
+//            catch (e: AuthenticationException) {
+//                throw ResourceNotFoundException(e.message!!)
+//            }
+//        }
+
+
     @PostMapping("/requests")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_TECHNICIAN', 'ROLE_MODERATOR', 'ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
@@ -88,6 +119,15 @@ class RequestController(private val requestService: RequestService) {
         val pageable: Pageable = PageRequest.of(0, 10, Sort.Direction.DESC, "id")
         val bottomPage: Page<Request> = requestRepository.findAll(pageable)
         return bottomPage.content
+    }
+
+    @GetMapping("/requests/user")
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_TECHNICIAN', 'ROLE_MODERATOR', 'ROLE_ADMIN')")
+    fun getUserRequests(): List<Request> {
+        val authentication: Authentication = SecurityContextHolder.getContext().authentication
+        val currentPrincipalName: String = authentication.name
+        return requestRepository.findByIssuedBy(currentPrincipalName)
     }
 
     //    TODO При таком запросе из заявки удаляется все оборудование

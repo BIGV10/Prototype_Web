@@ -21,8 +21,8 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Штрихкод</th>
+                    <th scope="col">Название</th>
                     <th scope="col">Комментарий</th>
-                    <th scope="col">Статус</th>
                     <th scope="col"></th>
                 </tr>
                 </thead>

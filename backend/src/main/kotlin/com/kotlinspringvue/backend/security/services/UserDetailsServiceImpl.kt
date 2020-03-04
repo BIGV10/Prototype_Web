@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
+import java.time.LocalDateTime
 import java.util.stream.Collectors
 
 @Service
@@ -19,6 +20,10 @@ class UserDetailsServiceImpl : UserDetailsService {
     @Throws(UsernameNotFoundException::class)
     override fun loadUserByUsername(username: String): UserDetails {
         val user = userRepository.findByUsername(username).get()
+
+        user.lastLogin = LocalDateTime.now()
+
+        userRepository.save(user)
 
         val authorities: List<GrantedAuthority> = user.roles!!.stream().map({ role -> SimpleGrantedAuthority(role.name) }).collect(Collectors.toList<GrantedAuthority>())
 
