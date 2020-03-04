@@ -26,6 +26,7 @@ class JwtProvider {
                 .setIssuedAt(Date())
                 .setExpiration(Date((Date()).time + jwtExpiration!! * 1000))
                 .claim("roles", user.roles?.map { it.name })
+                .claim("enabled", user.enabled)
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact()
     }
