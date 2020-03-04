@@ -45,13 +45,13 @@ export default new Router({
         },
         {
             path: "/equipments/:id",
-            name: "equipments-details",
-            component: () => import("./components/equipment/Equipment")
+            name: "equipments-edit",
+            component: () => import("./components/equipment/EquipmentEdit")
         },
         {
-            path: "/addEquipment",
-            name: "add-equipment",
-            component: () => import("./components/equipment/AddEquipment")
+            path: "/equipmentAdd",
+            name: "equipment-add",
+            component: () => import("./components/equipment/EquipmentAdd")
         },
         {
             path: "/requests",
@@ -60,13 +60,13 @@ export default new Router({
         },
         {
             path: "/requests/:id",
-            name: "requests-details",
-            component: () => import("./components/request/Request")
+            name: "requests-edit",
+            component: () => import("./components/request/RequestEdit")
         },
         {
-            path: "/addRequest",
-            name: "add-request",
-            component: () => import("./components/request/AddRequest")
+            path: "/requestAdd",
+            name: "request-add",
+            component: () => import("./components/request/RequestAdd")
         }
     ]
 });

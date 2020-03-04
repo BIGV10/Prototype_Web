@@ -1,7 +1,7 @@
 <template>
     <div>
         <RequestInfo v-bind:request="request"/>
-        <h4>Оборудование в заявке</h4>
+        <h4 class="mt-2">Оборудование в заявке</h4>
         <table class="table table-sm table-hover table-responsive-sm">
             <thead class="thead-dark">
             <tr>

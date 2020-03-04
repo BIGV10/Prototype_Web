@@ -14,7 +14,7 @@
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/requests">Список заявок</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/addRequest">Добавить заявку</a>
+              <a class="dropdown-item" href="/requestAdd">Добавить заявку</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -24,7 +24,7 @@
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/equipments">Список оборудования</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/addEquipment">Добавить оборудование</a>
+              <a class="dropdown-item" href="/equipmentAdd">Добавить оборудование</a>
             </div>
           </li>
         </ul>
