@@ -1,200 +1,153 @@
 <template>
-  <div class="cssload-container">
-    <div class="cssload-shaft1"></div>
-    <div class="cssload-shaft2"></div>
-    <div class="cssload-shaft3"></div>
-    <div class="cssload-shaft4"></div>
-    <div class="cssload-shaft5"></div>
-    <div class="cssload-shaft6"></div>
-    <div class="cssload-shaft7"></div>
-    <div class="cssload-shaft8"></div>
-    <div class="cssload-shaft9"></div>
-    <div class="cssload-shaft10"></div>
+  <div class="loader-container">
+    <div class="dash one"></div>
+    <div class="dash two"></div>
+    <div class="dash three"></div>
+    <div class="dash four"></div>
   </div>
 </template>
 
 <style>
-  .cssload-container *, .cssload-container *:before, .cssload-container *:after{
-    box-sizing: border-box;
-    -o-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-  }
-
-  .cssload-container {
-    margin: 49px auto;
-    position: relative;
-    width: 97px;
-    height: 97px;
-  }
-  .cssload-container > div {
-    float: left;
-    background: rgb(0,0,0);
-    height: 100%;
-    width: 5px;
-    margin-right: 1px;
-    display: inline-block;
-  }
-
-  .cssload-container {
-    position: relative;
-    width: 97px;
-    height: 97px;
-  }
-  .cssload-container > div {
-    background: transparent;
-    border: 8px solid transparent;
-    border-color: rgba(0,0,0,0.98) transparent;
-    border-radius: 100%;
-    -o-border-radius: 100%;
-    -ms-border-radius: 100%;
-    -webkit-border-radius: 100%;
-    -moz-border-radius: 100%;
+  .loader-container {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate"("-50%, -50%")";
-    -o-transform: translate"("-50%, -50%")";
-    -ms-transform: translate"("-50%, -50%")";
-    -webkit-transform: translate"("-50%, -50%")";
-    -moz-transform: translate"("-50%, -50%")";
-    transform: translate(-50%, -50%) rotate(0);
-    -o-transform: translate(-50%, -50%) rotate(0);
-    -ms-transform: translate(-50%, -50%) rotate(0);
-    -webkit-transform: translate(-50%, -50%) rotate(0);
-    -moz-transform: translate(-50%, -50%) rotate(0);
-    animation: cssload-wave 2.3s infinite ease-in-out;
-    -o-animation: cssload-wave 2.3s infinite ease-in-out;
-    -ms-animation: cssload-wave 2.3s infinite ease-in-out;
-    -webkit-animation: cssload-wave 2.3s infinite ease-in-out;
-    -moz-animation: cssload-wave 2.3s infinite ease-in-out;
-  }
-  .cssload-container .cssload-shaft1 {
-    animation-delay: 0.12s;
-    -o-animation-delay: 0.12s;
-    -ms-animation-delay: 0.12s;
-    -webkit-animation-delay: 0.12s;
-    -moz-animation-delay: 0.12s;
-    width: 19px;
-    height: 19px;
-  }
-  .cssload-container .cssload-shaft2 {
-    animation-delay: 0.23s;
-    -o-animation-delay: 0.23s;
-    -ms-animation-delay: 0.23s;
-    -webkit-animation-delay: 0.23s;
-    -moz-animation-delay: 0.23s;
-    width: 24px;
-    height: 24px;
-  }
-  .cssload-container .cssload-shaft3 {
-    animation-delay: 0.35s;
-    -o-animation-delay: 0.35s;
-    -ms-animation-delay: 0.35s;
-    -webkit-animation-delay: 0.35s;
-    -moz-animation-delay: 0.35s;
-    width: 34px;
-    height: 34px;
-  }
-  .cssload-container .cssload-shaft4 {
-    animation-delay: 0.46s;
-    -o-animation-delay: 0.46s;
-    -ms-animation-delay: 0.46s;
-    -webkit-animation-delay: 0.46s;
-    -moz-animation-delay: 0.46s;
-    width: 44px;
-    height: 44px;
-  }
-  .cssload-container .cssload-shaft5 {
-    animation-delay: 0.58s;
-    -o-animation-delay: 0.58s;
-    -ms-animation-delay: 0.58s;
-    -webkit-animation-delay: 0.58s;
-    -moz-animation-delay: 0.58s;
-    width: 54px;
-    height: 54px;
-  }
-  .cssload-container .cssload-shaft6 {
-    animation-delay: 0.69s;
-    -o-animation-delay: 0.69s;
-    -ms-animation-delay: 0.69s;
-    -webkit-animation-delay: 0.69s;
-    -moz-animation-delay: 0.69s;
-    width: 63px;
-    height: 63px;
-  }
-  .cssload-container .cssload-shaft7 {
-    animation-delay: 0.81s;
-    -o-animation-delay: 0.81s;
-    -ms-animation-delay: 0.81s;
-    -webkit-animation-delay: 0.81s;
-    -moz-animation-delay: 0.81s;
-    width: 73px;
-    height: 73px;
-  }
-  .cssload-container .cssload-shaft8 {
-    animation-delay: 0.92s;
-    -o-animation-delay: 0.92s;
-    -ms-animation-delay: 0.92s;
-    -webkit-animation-delay: 0.92s;
-    -moz-animation-delay: 0.92s;
-    width: 78px;
-    height: 78px;
-  }
-  .cssload-container .cssload-shaft9 {
-    animation-delay: 1.04s;
-    -o-animation-delay: 1.04s;
-    -ms-animation-delay: 1.04s;
-    -webkit-animation-delay: 1.04s;
-    -moz-animation-delay: 1.04s;
-    width: 83px;
-    height: 83px;
-  }
-  .cssload-container .cssload-shaft10 {
-    animation-delay: 1.15s;
-    -o-animation-delay: 1.15s;
-    -ms-animation-delay: 1.15s;
-    -webkit-animation-delay: 1.15s;
-    -moz-animation-delay: 1.15s;
-    width: 88px;
-    height: 88px;
+    transform: translate(-50%, -50%);
+    display: flex;
   }
 
+  .dash {
+    margin: 0 15px;
+    width: 35px;
+    height: 15px;
+    border-radius: 8px;
+    background: #df5330;
+    box-shadow: 0 0 10px 0 #FECDFF;
+  }
 
+  .one {
+    margin-right: -18px;
+    transform-origin: center left;
+    animation: spin 3s linear infinite;
+  }
 
-  @keyframes cssload-wave {
-    50% {
-      transform: translate(-50%, -50%) rotate(360deg);
-      border-color: rgb(255,255,255) transparent;
+  .two {
+    transform-origin: center right;
+    animation: spin2 3s linear infinite;
+    animation-delay: .2s;
+  }
+
+  .three {
+    transform-origin: center right;
+    animation: spin3 3s linear infinite;
+    animation-delay: .3s;
+  }
+
+  .four {
+    transform-origin: center right;
+    animation: spin4 3s linear infinite;
+    animation-delay: .4s;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(360deg);
+    }
+    30% {
+      transform: rotate(370deg);
+    }
+    35% {
+      transform: rotate(360deg);
+    }
+    100% {
+      transform: rotate(360deg);
     }
   }
 
-  @-o-keyframes cssload-wave {
-    50% {
-      -o-transform: translate(-50%, -50%) rotate(360deg);
-      border-color: rgb(255,255,255) transparent;
+  @keyframes spin2 {
+    0% {
+      transform: rotate(0deg);
+    }
+    20% {
+      transform: rotate(0deg);
+    }
+    30% {
+      transform: rotate(-180deg);
+    }
+    35% {
+      transform: rotate(-190deg);
+    }
+    40% {
+      transform: rotate(-180deg);
+    }
+    78% {
+      transform: rotate(-180deg);
+    }
+    95% {
+      transform: rotate(-360deg);
+    }
+    98% {
+      transform: rotate(-370deg);
+    }
+    100% {
+      transform: rotate(-360deg);
     }
   }
 
-  @-ms-keyframes cssload-wave {
+  @keyframes spin3 {
+    0% {
+      transform: rotate(0deg);
+    }
+    27% {
+      transform: rotate(0deg);
+    }
+    40% {
+      transform: rotate(180deg);
+    }
+    45% {
+      transform: rotate(190deg);
+    }
     50% {
-      -ms-transform: translate(-50%, -50%) rotate(360deg);
-      border-color: rgb(255,255,255) transparent;
+      transform: rotate(180deg);
+    }
+    62% {
+      transform: rotate(180deg);
+    }
+    75% {
+      transform: rotate(360deg);
+    }
+    80% {
+      transform: rotate(370deg);
+    }
+    85% {
+      transform: rotate(360deg);
+    }
+    100% {
+      transform: rotate(360deg);
     }
   }
 
-  @-webkit-keyframes cssload-wave {
-    50% {
-      -webkit-transform: translate(-50%, -50%) rotate(360deg);
-      border-color: rgb(255,255,255) transparent;
+  @keyframes spin4 {
+    0% {
+      transform: rotate(0deg);
     }
-  }
-
-  @-moz-keyframes cssload-wave {
-    50% {
-      -moz-transform: translate(-50%, -50%) rotate(360deg);
-      border-color: rgb(255,255,255) transparent;
+    38% {
+      transform: rotate(0deg);
+    }
+    60% {
+      transform: rotate(-360deg);
+    }
+    65% {
+      transform: rotate(-370deg);
+    }
+    75% {
+      transform: rotate(-360deg);
+    }
+    100% {
+      transform: rotate(-360deg);
     }
   }
 </style>
